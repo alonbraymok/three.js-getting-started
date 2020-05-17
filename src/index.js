@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import * as serviceWorker from "./serviceWorker";
+import EldritchButton from "./components/button/eldritch.button";
+import Main from "./components/main/main";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function App() {
+  const [worldFocus, setWorldFocus] = useState(false);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+  return (
+    <>
+      <EldritchButton
+        title={"Arm"}
+        style={{ left: 300 }}
+        onClick={() => setWorldFocus(false)}
+      />
+      <EldritchButton title={"World"} onClick={() => setWorldFocus(true)} />
+      <Main worldFocus={worldFocus} />
+    </>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
 serviceWorker.unregister();
